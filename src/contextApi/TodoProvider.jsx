@@ -37,15 +37,23 @@ export const TodoReducer = (state, action) => {
       }
     }
     case "delete": {
-      const isExist = state.todoItems.filter(
+      const newTodo = state.todoItems.filter(
         (item) => item.id !== action.payload.id
       );
-
-      if (!isExist) {
-        return state;
-      }
-      alert("Todo Is Deleted!");
-      return todoItems;
+      toast.warn("Todo is deleted !", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
+      return {
+        todoItems: newTodo,
+      };
     }
 
     case "update": {

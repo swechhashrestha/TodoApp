@@ -25,26 +25,16 @@ function ToDo() {
     setTitleError("");
   }
 
-
-  const deleteTodo = () => {
-    dispatch({
-      type: "delete",
-       payload: {
-        id: uuidv4(),
-        title: title,
-      },
-    });
-  }
-
     return (
-      <div className="bg-pink-100 p-10 w-[700px]  m-auto mt-20 flex flex-col  ">
+      <div className="bg-purple-200 p-20 h-[100vh]">
+      <div className="bg-pink-100 p-10 w-[700px]  m-auto flex flex-col rounded-2xl  ">
         <div className=" p-5  space-x-3 flex  justify-center ">
           <div>
           <input
             onChange={(e) => {
               setTitle(e.target.value)
-              value = { title }
             }}
+            value = { title }
             className="outline-none border w-[400px] p-3 h-10 rounded-sm" type="text" placeholder="Enter todo..." />
           {titleError.length > 0 && (
             <p className="text-red-600 italic p-2">{titleError}</p>
@@ -71,7 +61,7 @@ function ToDo() {
                       </button>
                           <button
                             onClick={() => {
-                              deleteTodo(item.id)
+                             dispatch({type: "delete", payload: {id:item.id}});
                             }}
                             className="bg-purple-500 p-1 w-15 text-white rounded-sm hover:bg-purple-400 hover:text-gray-600">
                             Delete
@@ -90,6 +80,7 @@ function ToDo() {
                </div>
           )}
         </div>
+      </div>
       </div>
     );
   }
